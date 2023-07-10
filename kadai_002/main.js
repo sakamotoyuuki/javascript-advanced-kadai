@@ -78,10 +78,14 @@ const rankCheck = score => {
 // ゲームを終了
 const gameOver = id => {
     clearInterval(id);
+    untypedfield.textContent = 'タイムアップ！';
+    typedfield.style.display = 'none';
+    setTimeout(() => {
     const result = confirm(rankCheck(score));
     if(result == true) {
-        window.location.reload();
+            window.location.reload();
     }
+},10);
 };
 
 // カウントダウンタイマー
@@ -94,16 +98,10 @@ const timer = () => {
             gameOver(id);
             
         }
-    },1000)
+    },100)
 };
 
 start.addEventListener('click',() => {
-    setTimeout(() => {
-        untypedfield.textContent = 'タイムアップ！';
-        typedfield.style.display = 'none';
-    },60000)
-    
-
     timer();
     createText();
     start.style.display = 'none';
